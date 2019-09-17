@@ -3,5 +3,7 @@ lib
 types
 src/**/*.js
 node_modules
+build
+gh-pages
 
 # Allow
