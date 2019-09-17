@@ -1,0 +1,66 @@
+{
+  "name": "vuepress-plugin-directory-classifier",
+  "version": "0.0.0",
+  "description": "VuePress plugin for directory based classification",
+  "author": {
+    "name": "Alija Sabic",
+    "email": "sabic.alija@gmail.com"
+  },
+  "keywords": [
+    "documentation",
+    "vue",
+    "vuepress",
+    "generator",
+    "directory",
+    "classifier"
+  ],
+  "license": "GPL-3.0",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabicalija/vuepress-plugins.git",
+    "path": "packages/vuepress-plugin-directory-classifier"
+  },
+  "scripts": {
+    "dev": "tsc -p tsconfig.json --watch",
+    "build": "tsc -p tsconfig.json"
+  },
+  "bugs": {
+    "url": "https://github.com/sabicalija/vuepress-plugins/issues"
+  },
+  "dependencies": {
+    "@vuepress/shared-utils": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/escape-html": "^0.0.20",
+    "@types/fs-extra": "^8.0.0",
+    "@types/hash-sum": "^1.0.0",
+    "@types/node": "^12.7.5",
+    "@types/semver": "^6.0.2",
+    "concurrently": "^4.1.2",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3",
+    "xo": "^0.24.0"
+  },
+  "xo": {
+    "extends": [
+      "rem",
+      "plugin:prettier/recommended",
+      "xo-typescript"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "rules": {}
+  }
+}

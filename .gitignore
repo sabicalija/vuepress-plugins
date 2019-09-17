@@ -1,0 +1,7 @@
+# Ignore
+lib
+types
+src/**/*.js
+node_modules
+
+# Allow
