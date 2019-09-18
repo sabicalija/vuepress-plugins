@@ -117,6 +117,7 @@ The value of `$site` of this site will look as follows:
       "path": "/reference/index.html",
       "frontmatter": {
         "title": "References",
+        "layout": "IndexReferences",
         "indexed": [
           "/reference/item-1.html",
           "/reference/item-2.html",
