@@ -1,0 +1,14 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "packages/vuepress-plugin-directory-classifier"
+	},
+	{
+		"path": "packages/docs"
+	}
+],
+  "settings": {}
+}
