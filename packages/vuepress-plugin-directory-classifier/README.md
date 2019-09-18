@@ -1,11 +1,5 @@
-# `vuepress-plugin-directory-classifier`
+# vuepress-plugin-directory-classifier
 
-> TODO: description
+    directory based classifier plugin for vuepress
 
-## Usage
-
-```
-const vuepressPluginDirectoryClassifier = require('vuepress-plugin-directory-classifier');
-
-// TODO: DEMONSTRATE API
-```
+See [documentation](https://sabicalija.github.io/vuepress-plugins-public/reference/directory-classifier.html).
