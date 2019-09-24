@@ -1,10 +1,9 @@
 import { existsSync } from "fs";
 import { join } from "path";
 
-import logger from "./util/logger";
-import chalk from "chalk";
+import { logger, chalk } from "@vuepress/shared-utils";
 
-import { IndexPage } from "./interface/ExtraPage";
+import { ExtraPage } from "./interface/ExtraPage";
 import { DirectoryClassifierPluginOptions } from "./interface/Options";
 import { PageEnhancer } from "./interface/PageEnhancer";
 
@@ -34,7 +33,7 @@ export function handleOptions(options: DirectoryClassifierPluginOptions, ctx: an
     return false;
   });
 
-  const indexPages: IndexPage[] = [];
+  const indexPages: ExtraPage[] = [];
   const pageEnhancers: PageEnhancer[] = [];
 
   /**

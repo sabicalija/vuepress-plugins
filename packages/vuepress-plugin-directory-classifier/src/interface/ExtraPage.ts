@@ -14,10 +14,3 @@ export interface ExtraPage {
    */
   meta?: Record<string, any>;
 }
-
-export interface IndexPage extends ExtraPage {
-  /**
-   * frontmatter of page
-   */
-  frontmatter: Record<string, any>;
-}

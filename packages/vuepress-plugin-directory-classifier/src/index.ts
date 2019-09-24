@@ -1,5 +1,6 @@
 import { DirectoryClassifierPluginOptions } from "./interface/Options";
 import { handleOptions, isIndexed } from "./handleOptions";
+// import { handleOptions } from "./handleOptions";
 
 function injectExtraAPI(ctx: any) {
   const { layoutComponentMap } = ctx.themeAPI;
@@ -23,14 +24,13 @@ module.exports = (options: DirectoryClassifierPluginOptions, ctx: any) => {
   const { pageEnhancers, indexPages } = handleOptions(options, ctx);
 
   return {
-    name: "vuepress-plugin-hub",
+    name: "vuepress-plugin-directory-classifier",
 
     /**
      * 1. Execute `pageEnhancers` generated in handleOptions
      */
     extendPageData(pageCtx: any) {
       const { frontmatter: rawFrontMatter } = pageCtx;
-
       pageEnhancers.forEach(({ when, data = {}, frontmatter = {} }) => {
         if (when(pageCtx)) {
           Object.keys(frontmatter).forEach(key => {
@@ -50,23 +50,23 @@ module.exports = (options: DirectoryClassifierPluginOptions, ctx: any) => {
      */
     async ready() {
       const { pages } = ctx;
-
       /**
        * 2.1 Add paths of indexed pages to index pages.
        */
       for (let { permalink, frontmatter } of indexPages) {
-        frontmatter.indexed = pages.filter(({ regularPath }: { regularPath: string }) =>
-          isIndexed(regularPath, permalink, frontmatter.subdirlevel)
-        );
+        if (frontmatter)
+          frontmatter.indexed = pages
+            .filter(({ regularPath }: { regularPath: string }) =>
+              isIndexed(regularPath, permalink, frontmatter ? frontmatter.subdirlevel : 1)
+            )
+            .map(({ regularPath }: any) => regularPath);
       }
-
       /**
        * 2.2 Combine all pages.
        *
        *   - Index pages.
        */
       const allExtraPages = [...indexPages];
-
       await Promise.all(allExtraPages.map(async page => ctx.addPage(page)));
     }
   };
