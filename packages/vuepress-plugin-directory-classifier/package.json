@@ -39,7 +39,7 @@
     "url": "https://github.com/sabicalija/vuepress-plugins/issues"
   },
   "dependencies": {
-    "@vuepress/shared-utils": "^1.1.0"
+    "vuepress": "^1.4.1"
   },
   "devDependencies": {
     "@types/escape-html": "^0.0.20",

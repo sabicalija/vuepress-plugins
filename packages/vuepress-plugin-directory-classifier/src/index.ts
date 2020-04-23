@@ -33,7 +33,7 @@ module.exports = (options: DirectoryClassifierPluginOptions, ctx: any) => {
       const { frontmatter: rawFrontMatter } = pageCtx;
       pageEnhancers.forEach(({ when, data = {}, frontmatter = {} }) => {
         if (when(pageCtx)) {
-          Object.keys(frontmatter).forEach(key => {
+          Object.keys(frontmatter).forEach((key) => {
             /**
              * Respect the original frontmatter in markdown.
              */
@@ -61,13 +61,37 @@ module.exports = (options: DirectoryClassifierPluginOptions, ctx: any) => {
             )
             .map(({ regularPath }: any) => regularPath);
       }
+
       /**
-       * 2.2 Combine all pages.
-       *
-       *   - Index pages.
+       * 2.2 Add frontmatter to exiting index pages.
        */
-      const allExtraPages = [...indexPages];
-      await Promise.all(allExtraPages.map(async page => ctx.addPage(page)));
-    }
+      const existingPages = pages.map(({ path }: any) => path);
+      const existingIndexPages = indexPages.filter(({ permalink }) =>
+        existingPages.includes(permalink)
+      );
+      for (let { permalink, frontmatter } of existingIndexPages) {
+        const page = pages.find(({ path }: any) => path && path === permalink);
+        const { frontmatter: rawFrontMatter } = page;
+        for (let key in frontmatter) {
+          /**
+           * Respect the original frontmatter in markdown.
+           */
+          if (!rawFrontMatter[key]) {
+            rawFrontMatter[key] = frontmatter[key];
+          }
+        }
+      }
+
+      /**
+       * 2.3 Combine all pages.
+       *
+       *   - Missing index pages.
+       */
+      const missingIndexPages = indexPages.filter(
+        ({ permalink }) => !existingPages.includes(permalink)
+      );
+      const allExtraPages = [...missingIndexPages];
+      await Promise.all(allExtraPages.map(async (page) => ctx.addPage(page)));
+    },
   };
 };
