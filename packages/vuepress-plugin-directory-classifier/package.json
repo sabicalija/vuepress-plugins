@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-directory-classifier",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "VuePress plugin for directory based classification",
   "author": {
     "name": "Alija Sabic",
